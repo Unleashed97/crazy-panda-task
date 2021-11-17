@@ -1,0 +1,11 @@
+@import 'vendor/reset';
+@import 'vars';
+
+*, *::before, *::after{
+    box-sizing: border-box;
+}
+
+.wrapper{
+    font-family: 'Ubuntu', 'Roboto', Helvetica, sans-serif;
+    font-size: 15px;
+}
