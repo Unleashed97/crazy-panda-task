@@ -1,34 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
+import Countries from './components/Countries'
+
 import './scss/style.scss'
 
 function App() {
     const [countries, setCountries] = useState([])
 
-    const itemsPerPage = 50
-
-    const getCountries = async () => {
-        try {
+    useEffect(() => {
+        const getCountries = async () => {
             const response = await axios.get(
                 'https://restcountries.com/v3.1/all',
             )
-            let countriesArray = []
-            response.data.forEach((obj) => {
-                countriesArray.push({
-                    name: obj?.name.common,
-                    capital: obj.capital ? obj.capital[0] : 'unknown',
-                    area: obj?.area,
-                    population: obj?.population,
-                })
-            })
-
-            setCountries([...countriesArray])
-        } catch (error) {
-            console.log(error)
+            setCountries(response.data)
         }
-    }
-    useEffect(() => {
+
         getCountries()
     }, [])
 
@@ -48,49 +35,24 @@ function App() {
                             />
                         </label>
                     </form>
-
-                    <div className="table__wrapper">
-                        <table className="table">
-                            <thead className="table__header">
-                                <tr className="table__row">
-                                    <th className="table__cell table__cell--head">
-                                        Country
-                                    </th>
-                                    <th className="table__cell table__cell--head">
-                                        Capital
-                                    </th>
-                                    <th className="table__cell table__cell--head">
-                                        Area
-                                    </th>
-                                    <th className="table__cell table__cell--head">
-                                        Population
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody className="table__body">
-                                {countries &&
-                                    countries.map((country, index) => (
-                                        <tr
-                                            className="table__row"
-                                            key={country.name + index}
-                                        >
-                                            <td className="table__cell table__cell--body">
-                                                {country.name}
-                                            </td>
-                                            <td className="table__cell table__cell--body">
-                                                {country.capital}
-                                            </td>
-                                            <td className="table__cell table__cell--body">
-                                                {country.area}
-                                            </td>
-                                            <td className="table__cell table__cell--body">
-                                                {country.population}
-                                            </td>
-                                        </tr>
-                                    ))}
-                            </tbody>
-                        </table>
-                    </div>
+                    <Countries countries={countries} />
+                    <ul className="pagination">
+                        <li className="pagination__item">
+                            <button className="btn">
+                                <span className="btn__number">1</span>
+                            </button>
+                        </li>
+                        <li className="pagination__item">
+                            <button className="btn">
+                                <span className="btn__number">2</span>
+                            </button>
+                        </li>
+                        <li className="pagination__item">
+                            <button className="btn">
+                                <span className="btn__number">3</span>
+                            </button>
+                        </li>
+                    </ul>
                 </div>
             </section>
         </div>
