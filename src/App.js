@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import Countries from './components/Countries'
 import Pagination from './components/Pagination'
+import Filtration from './components/Filtration'
 
 import './scss/style.scss'
 
@@ -17,6 +18,10 @@ function App() {
     const [sortOrder, setSortOrder] = useState(true)
     // true is asc, false is desc
 
+    // filtration
+    const [filtratedCountries, setFiltratedCountries] = useState([])
+    const [inputValue, setInputValue] = useState('')
+
     useEffect(() => {
         const getCountries = async () => {
             const response = await axios.get(
@@ -28,11 +33,43 @@ function App() {
     }, [])
 
     useEffect(() => {
+        setFiltratedCountries(
+            countries.filter((country) => {
+                if (
+                    country.name.common &&
+                    String(country.name.common)
+                        .toLowerCase()
+                        .includes(inputValue)
+                ) {
+                    return true
+                } else if (
+                    country.capital &&
+                    String(country.capital).toLowerCase().includes(inputValue)
+                ) {
+                    return true
+                } else if (
+                    country.area &&
+                    String(country.area).toLowerCase().includes(inputValue)
+                ) {
+                    return true
+                } else if (
+                    country.population &&
+                    String(country.population)
+                        .toLowerCase()
+                        .includes(inputValue)
+                ) {
+                    return true
+                } else return false
+            }),
+        )
+    }, [countries, inputValue])
+
+    useEffect(() => {
         const sortCountries = () => {
             switch (sortCategory) {
                 case 'Country':
-                    setCountries(
-                        countries.sort((a, b) => {
+                    setFiltratedCountries(
+                        filtratedCountries.sort((a, b) => {
                             if (a.name.common === b.name.common) return 0
                             else if (sortOrder) {
                                 return a.name.common > b.name.common ? 1 : -1
@@ -43,8 +80,8 @@ function App() {
                     )
                     break
                 case 'Capital':
-                    setCountries(
-                        countries.sort((a, b) => {
+                    setFiltratedCountries(
+                        filtratedCountries.sort((a, b) => {
                             const first = a && a.capital
                             const second = b && b.capital
                             if (first === second) return 0
@@ -59,15 +96,15 @@ function App() {
                     )
                     break
                 case 'Area':
-                    setCountries(
-                        countries.sort((a, b) => {
+                    setFiltratedCountries(
+                        filtratedCountries.sort((a, b) => {
                             return sortOrder ? a.area > b.area : a.area < b.area
                         }),
                     )
                     break
                 case 'Population':
-                    setCountries(
-                        countries.sort((a, b) => {
+                    setFiltratedCountries(
+                        filtratedCountries.sort((a, b) => {
                             return sortOrder
                                 ? a.population > b.population
                                 : a.population < b.population
@@ -79,18 +116,19 @@ function App() {
             }
         }
         sortCountries()
-    }, [countries, sortCategory, sortOrder])
+    }, [filtratedCountries, sortCategory, sortOrder])
 
     useEffect(() => {
         // split countries into pages
         const getCurrentPageItems = () => {
             const lastItem = currentPage * itemsPerPage
             const firstItem = lastItem - itemsPerPage
-            setCurrentPageItems(countries.slice(firstItem, lastItem))
+            setCurrentPageItems(filtratedCountries.slice(firstItem, lastItem))
         }
         getCurrentPageItems()
-    }, [countries, currentPage, sortCategory, sortOrder])
+    }, [filtratedCountries, currentPage, sortCategory, sortOrder])
 
+    // pagination
     const paginationButtonClick = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
@@ -105,22 +143,18 @@ function App() {
         }
     }
 
+    // filtration
+    const filtration = (e) => {
+        const filterRequest = e.target.value.trim().toLowerCase()
+        setInputValue(filterRequest)
+    }
+
     return (
         <div className="wrapper">
             <section className="section">
                 <h1 className="section__title">Crazy Panda test task</h1>
                 <div className="section__content">
-                    <form action="" className="form">
-                        <label className="form__label" htmlFor="form__input">
-                            Filtration: &nbsp;
-                            <input
-                                id="form__input"
-                                className="form__input"
-                                type="text"
-                                placeholder="type your request here"
-                            />
-                        </label>
-                    </form>
+                    <Filtration handleInputChange={filtration} />
                     <Countries
                         countries={currentPageItems}
                         handleCategoryClick={selectCategory}
@@ -129,7 +163,7 @@ function App() {
                     />
                     <Pagination
                         itemsPerPage={itemsPerPage}
-                        totalItems={countries.length}
+                        totalItems={filtratedCountries.length}
                         currentPageNumber={currentPage}
                         handlePagButtonClick={paginationButtonClick}
                     />

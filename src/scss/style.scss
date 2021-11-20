@@ -65,6 +65,11 @@
                 background-color: #ccc;
             }
         }
+
+        &--unknown {
+            font-style: italic;
+            color: rgba(#000, 0.5);
+        }
     }
 
     &__row {

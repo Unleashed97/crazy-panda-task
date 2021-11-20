@@ -49,7 +49,13 @@ const Countries = ({
                                 <td className="table__cell table__cell--body">
                                     {country.name.common}
                                 </td>
-                                <td className="table__cell table__cell--body">
+                                <td
+                                    className={
+                                        country?.capital
+                                            ? 'table__cell table__cell--body'
+                                            : 'table__cell table__cell--body table__cell--unknown'
+                                    }
+                                >
                                     {country.capital
                                         ? country.capital[0]
                                         : 'unknown'}
