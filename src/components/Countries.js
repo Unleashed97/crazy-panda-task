@@ -17,24 +17,31 @@ const Countries = ({
                             <th
                                 className="table__cell table__cell--head"
                                 key={category + index}
-                                onClick={() => handleCategoryClick(category)}
                             >
-                                {category} &nbsp;
-                                {category === sortCategory ? (
-                                    sortOrder ? (
-                                        <svg width="8" height="10">
-                                            <path d="M0 6 L4 0 L8 6 L0 6" />
-                                        </svg>
+                                <button
+                                    className="btn"
+                                    type="button"
+                                    onClick={() =>
+                                        handleCategoryClick(category)
+                                    }
+                                >
+                                    {category} &nbsp;
+                                    {category === sortCategory ? (
+                                        sortOrder ? (
+                                            <svg width="8" height="10">
+                                                <path d="M0 6 L4 0 L8 6 L0 6" />
+                                            </svg>
+                                        ) : (
+                                            <svg width="8" height="10">
+                                                <path d="M0 0 L8 0 L4 6 L0 0" />
+                                            </svg>
+                                        )
                                     ) : (
-                                        <svg width="8" height="10">
-                                            <path d="M0 0 L8 0 L4 6 L0 0" />
+                                        <svg width="8" height="14">
+                                            <path d="M0 6 L4 0 L8 6 L0 6 M0 8 L8 8 L4 14 L0 8" />
                                         </svg>
-                                    )
-                                ) : (
-                                    <svg width="8" height="14">
-                                        <path d="M0 6 L4 0 L8 6 L0 6 M0 8 L8 8 L4 14 L0 8" />
-                                    </svg>
-                                )}
+                                    )}
+                                </button>
                             </th>
                         ))}
                     </tr>

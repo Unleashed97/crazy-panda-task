@@ -72,9 +72,17 @@ function App() {
                         filtratedCountries.sort((a, b) => {
                             if (a.name.common === b.name.common) return 0
                             else if (sortOrder) {
-                                return a.name.common > b.name.common ? 1 : -1
+                                return new Intl.Collator().compare(
+                                    a.name.common,
+                                    b.name.common,
+                                )
                             } else {
-                                return a.name.common > b.name.common ? -1 : 1
+                                return (
+                                    new Intl.Collator().compare(
+                                        a.name.common,
+                                        b.name.common,
+                                    ) * -1
+                                )
                             }
                         }),
                     )

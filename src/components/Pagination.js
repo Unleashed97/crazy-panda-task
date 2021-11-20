@@ -18,7 +18,9 @@ const Pagination = ({
                 <li className="pagination__item" key={item}>
                     <button
                         className={
-                            currentPageNumber === item ? 'btn active' : 'btn'
+                            currentPageNumber === item
+                                ? 'btn btn--pagination active'
+                                : 'btn btn--pagination'
                         }
                         onClick={() => handlePagButtonClick(item)}
                     >
