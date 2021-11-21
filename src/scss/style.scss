@@ -64,6 +64,7 @@ body {
             font-weight: 700;
             background-color: #eee;
             cursor: pointer;
+            padding: 0;
             &:hover {
                 background-color: #ccc;
             }
@@ -101,11 +102,18 @@ body {
 .btn {
     background: none;
     border: 0;
+    padding: 0;
 
     &__number {
         display: block;
         width: 20px;
         height: 20px;
+    }
+
+    &--cell-head {
+        text-align: left;
+        width: 100%;
+        padding: 10px;
     }
 
     &--pagination {

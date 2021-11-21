@@ -33,6 +33,7 @@ function App() {
     }, [])
 
     useEffect(() => {
+        setCurrentPage(1)
         setFiltratedCountries(
             countries.filter((country) => {
                 if (
@@ -134,7 +135,7 @@ function App() {
             setCurrentPageItems(filtratedCountries.slice(firstItem, lastItem))
         }
         getCurrentPageItems()
-    }, [filtratedCountries, currentPage, sortCategory, sortOrder])
+    }, [filtratedCountries, currentPage, itemsPerPage])
 
     // pagination
     const paginationButtonClick = (pageNumber) => {
@@ -157,6 +158,7 @@ function App() {
         setInputValue(filterRequest)
     }
 
+    console.log(filtratedCountries)
     return (
         <div className="wrapper">
             <section className="section">

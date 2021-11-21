@@ -19,7 +19,7 @@ const Countries = ({
                                 key={category + index}
                             >
                                 <button
-                                    className="btn"
+                                    className="btn btn--cell-head"
                                     type="button"
                                     onClick={() =>
                                         handleCategoryClick(category)
