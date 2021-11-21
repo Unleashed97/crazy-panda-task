@@ -135,7 +135,7 @@ function App() {
             setCurrentPageItems(filtratedCountries.slice(firstItem, lastItem))
         }
         getCurrentPageItems()
-    }, [filtratedCountries, currentPage, itemsPerPage])
+    }, [filtratedCountries, currentPage, itemsPerPage, sortCategory, sortOrder])
 
     // pagination
     const paginationButtonClick = (pageNumber) => {
@@ -158,7 +158,6 @@ function App() {
         setInputValue(filterRequest)
     }
 
-    console.log(filtratedCountries)
     return (
         <div className="wrapper">
             <section className="section">

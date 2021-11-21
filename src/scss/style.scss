@@ -68,6 +68,15 @@ body {
             &:hover {
                 background-color: #ccc;
             }
+
+            &:nth-child(1),
+            &:nth-child(2) {
+                width: 35%;
+            }
+            &:nth-child(3),
+            &:nth-child(4) {
+                width: 15%;
+            }
         }
 
         &--unknown {
