@@ -1,0 +1,55 @@
+@import '../../scss/vars';
+.table {
+    width: 100%;
+    font-size: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+
+    &__wrapper {
+        border-radius: 10px;
+        overflow-x: auto;
+        box-shadow: 0 0 10px rgba(#000, 0.3);
+    }
+
+    &__cell {
+        padding: 10px;
+        text-align: left;
+        transition: background-color 0.2s linear;
+
+        &--head {
+            white-space: nowrap;
+            font-weight: 700;
+            background-color: $gray;
+            cursor: pointer;
+            padding: 0;
+            &:hover {
+                background-color: $dark-gray;
+            }
+
+            &:nth-child(1),
+            &:nth-child(2) {
+                width: 35%;
+            }
+            &:nth-child(3),
+            &:nth-child(4) {
+                width: 15%;
+            }
+        }
+
+        &--unknown {
+            font-style: italic;
+            color: rgba(#000, 0.5);
+        }
+    }
+
+    &__row {
+        transition: background-color 0.2s linear;
+
+        &:hover {
+            background-color: $gray;
+        }
+        &:not(:last-child) .table__cell--body {
+            border-bottom: 2px solid $gray;
+        }
+    }
+}

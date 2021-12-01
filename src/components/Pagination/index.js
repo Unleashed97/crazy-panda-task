@@ -1,5 +1,9 @@
 import React from 'react'
 
+import Button from '../Button/'
+
+import './pagination.scss'
+
 const Pagination = ({
     itemsPerPage,
     totalItems,
@@ -16,7 +20,7 @@ const Pagination = ({
         <ul className="pagination">
             {numberOfPages.map((item) => (
                 <li className="pagination__item" key={item}>
-                    <button
+                    <Button
                         className={
                             currentPageNumber === item
                                 ? 'btn btn--pagination active'
@@ -25,11 +29,10 @@ const Pagination = ({
                         onClick={() => handlePagButtonClick(item)}
                     >
                         <span className="btn__number">{item}</span>
-                    </button>
+                    </Button>
                 </li>
             ))}
         </ul>
     )
 }
-
 export default Pagination

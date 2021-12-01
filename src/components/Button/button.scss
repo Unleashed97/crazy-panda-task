@@ -1,0 +1,33 @@
+@import '../../scss/vars';
+.btn {
+    background: none;
+    border: 0;
+    padding: 0;
+
+    &__number {
+        display: block;
+        width: 20px;
+        height: 20px;
+    }
+
+    &--cell-head {
+        text-align: left;
+        width: 100%;
+        padding: 10px;
+    }
+
+    &--pagination {
+        border: 1px solid $gray;
+        border-radius: 5px;
+        padding: 10px;
+        transition: background-color 0.2s linear;
+        &:hover {
+            // box-shadow: 0 0 10px rgba(#000, 0.3);
+            background-color: $gray;
+        }
+
+        &.active {
+            background-color: $gray;
+        }
+    }
+}

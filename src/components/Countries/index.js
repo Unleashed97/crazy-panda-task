@@ -1,5 +1,9 @@
 import React from 'react'
 
+import Button from '../Button/'
+
+import './countries.scss'
+
 const Countries = ({
     countries,
     handleCategoryClick,
@@ -18,7 +22,7 @@ const Countries = ({
                                 className="table__cell table__cell--head"
                                 key={category + index}
                             >
-                                <button
+                                <Button
                                     className="btn btn--cell-head"
                                     type="button"
                                     onClick={() =>
@@ -41,7 +45,7 @@ const Countries = ({
                                             <path d="M0 6 L4 0 L8 6 L0 6 M0 8 L8 8 L4 14 L0 8" />
                                         </svg>
                                     )}
-                                </button>
+                                </Button>
                             </th>
                         ))}
                     </tr>

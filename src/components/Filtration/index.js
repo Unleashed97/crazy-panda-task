@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './filtration.scss'
+
 const Filtration = ({ handleInputChange }) => {
     return (
         <form action="" className="form">

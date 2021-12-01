@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 
-import Countries from './components/Countries'
-import Pagination from './components/Pagination'
-import Filtration from './components/Filtration'
+import Countries from './components/Countries/'
+import Pagination from './components/Pagination/'
+import Filtration from './components/Filtration/'
 
 import './scss/style.scss'
+import DataLoader from './components/Countries/DataLoader'
 
 function App() {
     const [countries, setCountries] = useState([])
@@ -22,17 +22,23 @@ function App() {
     const [filtratedCountries, setFiltratedCountries] = useState([])
     const [inputValue, setInputValue] = useState('')
 
+    // Loader
+    const [loaded, setLoaded] = useState(false)
+
     useEffect(() => {
         const getCountries = async () => {
-            const response = await axios.get(
-                'https://restcountries.com/v3.1/all',
-            )
-            setCountries(response.data)
+            const response = await fetch('https://restcountries.com/v3.1/all')
+            if (response.ok) {
+                const countries = await response.json()
+                setLoaded(true)
+                setCountries(countries)
+            } else console.log(`Error ${response.status}`)
         }
         getCountries()
     }, [])
 
     useEffect(() => {
+        // filtration
         setCurrentPage(1)
         setFiltratedCountries(
             countries.filter((country) => {
@@ -66,6 +72,7 @@ function App() {
     }, [countries, inputValue])
 
     useEffect(() => {
+        // sorting
         const sortCountries = () => {
             switch (sortCategory) {
                 case 'Country':
@@ -157,25 +164,31 @@ function App() {
         const filterRequest = e.target.value.trim().toLowerCase()
         setInputValue(filterRequest)
     }
-
     return (
         <div className="wrapper">
             <section className="section">
                 <h1 className="section__title">Crazy Panda test task</h1>
                 <div className="section__content">
                     <Filtration handleInputChange={filtration} />
-                    <Countries
-                        countries={currentPageItems}
-                        handleCategoryClick={selectCategory}
-                        sortCategory={sortCategory}
-                        sortOrder={sortOrder}
-                    />
-                    <Pagination
-                        itemsPerPage={itemsPerPage}
-                        totalItems={filtratedCountries.length}
-                        currentPageNumber={currentPage}
-                        handlePagButtonClick={paginationButtonClick}
-                    />
+
+                    {loaded ? (
+                        <>
+                            <Countries
+                                countries={currentPageItems}
+                                handleCategoryClick={selectCategory}
+                                sortCategory={sortCategory}
+                                sortOrder={sortOrder}
+                            />
+                            <Pagination
+                                itemsPerPage={itemsPerPage}
+                                totalItems={filtratedCountries.length}
+                                currentPageNumber={currentPage}
+                                handlePagButtonClick={paginationButtonClick}
+                            />
+                        </>
+                    ) : (
+                        <DataLoader />
+                    )}
                 </div>
             </section>
         </div>

@@ -1,0 +1,35 @@
+@import '../../scss/vars';
+
+.loader {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: calc(50% - 50px);
+    left: calc(50% - 50px);
+    transform: translate3d(-50%, -50%, 0);
+    animation: rotation 1s infinite linear;
+    border: 6px solid rgba(0, 0, 0, 0.2);
+    border-radius: 100%;
+}
+
+.loader:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -6px;
+    height: 100%;
+    width: 100%;
+    border-top: 6px solid rgba(0, 0, 0, 0.8);
+    border-left: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-radius: 100%;
+}
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}

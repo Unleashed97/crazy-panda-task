@@ -1,0 +1,14 @@
+@import '../../scss/vars';
+.form {
+    margin-bottom: 20px;
+    &__label {
+        font-size: 18px;
+    }
+
+    &__input {
+        border: 1px solid $gray;
+        padding: 5px 10px;
+        font-size: 18px;
+        border-radius: 5px;
+    }
+}
