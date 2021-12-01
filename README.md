@@ -11,3 +11,6 @@
 - React
 - Axios
 - SCSS
+
+
+[demo](https://unleashed97.github.io/crazy-panda-task/)
