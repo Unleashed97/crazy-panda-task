@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/crazy-panda-task/static/css/main.52eae0c8.chunk.css",
-    "main.js": "/crazy-panda-task/static/js/main.36795847.chunk.js",
-    "main.js.map": "/crazy-panda-task/static/js/main.36795847.chunk.js.map",
+    "main.css": "/crazy-panda-task/static/css/main.b3357a35.chunk.css",
+    "main.js": "/crazy-panda-task/static/js/main.9a3cac4b.chunk.js",
+    "main.js.map": "/crazy-panda-task/static/js/main.9a3cac4b.chunk.js.map",
     "runtime-main.js": "/crazy-panda-task/static/js/runtime-main.d370c63c.js",
     "runtime-main.js.map": "/crazy-panda-task/static/js/runtime-main.d370c63c.js.map",
-    "static/js/2.40e73c1b.chunk.js": "/crazy-panda-task/static/js/2.40e73c1b.chunk.js",
-    "static/js/2.40e73c1b.chunk.js.map": "/crazy-panda-task/static/js/2.40e73c1b.chunk.js.map",
+    "static/js/2.2bcde05c.chunk.js": "/crazy-panda-task/static/js/2.2bcde05c.chunk.js",
+    "static/js/2.2bcde05c.chunk.js.map": "/crazy-panda-task/static/js/2.2bcde05c.chunk.js.map",
     "index.html": "/crazy-panda-task/index.html",
-    "static/css/main.52eae0c8.chunk.css.map": "/crazy-panda-task/static/css/main.52eae0c8.chunk.css.map",
-    "static/js/2.40e73c1b.chunk.js.LICENSE.txt": "/crazy-panda-task/static/js/2.40e73c1b.chunk.js.LICENSE.txt"
+    "static/css/main.b3357a35.chunk.css.map": "/crazy-panda-task/static/css/main.b3357a35.chunk.css.map",
+    "static/js/2.2bcde05c.chunk.js.LICENSE.txt": "/crazy-panda-task/static/js/2.2bcde05c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.d370c63c.js",
-    "static/js/2.40e73c1b.chunk.js",
-    "static/css/main.52eae0c8.chunk.css",
-    "static/js/main.36795847.chunk.js"
+    "static/js/2.2bcde05c.chunk.js",
+    "static/css/main.b3357a35.chunk.css",
+    "static/js/main.9a3cac4b.chunk.js"
   ]
 }
